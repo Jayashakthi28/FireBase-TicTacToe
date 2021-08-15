@@ -108,11 +108,11 @@ function tag_updater() {
 }
 
 function gamelogic(i) {
-  coin === "X" ? (coin = "O") : (coin = "X");
   if (winflag) return;
   if (boards[i].textContent === "X" || boards[i].textContent=== "O"){
        return;
   }
+  coin === "X" ? (coin = "O") : (coin = "X");
   boards[i].textContent = `${coin}`;
   winner();
 }
