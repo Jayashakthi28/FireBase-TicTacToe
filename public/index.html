@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
+    <link rel="stylesheet" href="../style.css">
+  </head>
+  <body>
+    <header>
+      <h1>Tic Tac Toe</h1>
+      <button class="none">Login</button>
+      <div class="user-det-cont">
+        <div class="user-img-cont">
+          <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.shareicon.net%2Fdata%2F128x128%2F2017%2F06%2F21%2F887435_logo_512x512.png&f=1&nofb=1" alt="">
+        </div>
+        <div class="user-name-cont">User-name</div>
+      </div>
+    </header>
+    <main>
+      <div class="button-cont">
+        <div class="button-cnt">
+      <button>Host a Game</button>
+      <div class="code-shower">
+        Your Game Code is:1234
+      </div>
+      </div>
+      <input type="text" placeholder="Enter the Code to Join">
+      </div>
+      <div class="players-cont">
+        <div>
+        <div class="user-det-cont">
+          <div class="user-img-cont">
+            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.shareicon.net%2Fdata%2F128x128%2F2017%2F06%2F21%2F887435_logo_512x512.png&f=1&nofb=1" alt="">
+          </div>
+          <div class="user-name-cont">User-name</div>
+        </div>
+        <div class="player-score player1">0</div>
+        </div>
+        <div>
+        <div class="user-det-cont">
+          <div class="user-img-cont">
+            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.shareicon.net%2Fdata%2F128x128%2F2017%2F06%2F21%2F887435_logo_512x512.png&f=1&nofb=1" alt="">
+          </div>
+          <div class="user-name-cont">User-name</div>
+        </div>
+        <div class="player-score player2">0</div>
+        </div>
+      </div>
+      <div class="board-cont">
+        <div class="board">
+          <div data-id="0"> </div>
+          <div data-id="1"> </div>
+          <div data-id="2"> </div>
+          <div data-id="3"> </div>
+          <div data-id="4"> </div>
+          <div data-id="5"> </div>
+          <div data-id="6"> </div>
+          <div data-id="7"> </div>
+          <div data-id="8"> </div>
+        </div>
+      </div>
+    </main>
+    <!-- <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const loadEl = document.querySelector('#load');
+        try {
+          let app = firebase.app();
+          let features = [
+            'auth', 
+            'database', 
+            'firestore',
+            'functions',
+            'messaging', 
+            'storage', 
+            'analytics', 
+            'remoteConfig',
+            'performance',
+          ].filter(feature => typeof app[feature] === 'function');
+          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+        } catch (e) {
+          console.error(e);
+          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+        }
+      });
+    </script> -->
+  <script src="../main.js"></script>
+  </body>
+</html>
