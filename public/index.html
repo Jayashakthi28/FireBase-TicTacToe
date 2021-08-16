@@ -9,8 +9,8 @@
   <body>
     <header>
       <h1>Tic Tac Toe</h1>
-      <button class="none">Login</button>
-      <div class="user-det-cont">
+      <button class="login-btn">Login</button>
+      <div class="user-det-cont none">
         <div class="user-img-cont">
           <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.shareicon.net%2Fdata%2F128x128%2F2017%2F06%2F21%2F887435_logo_512x512.png&f=1&nofb=1" alt="">
         </div>
@@ -20,12 +20,12 @@
     <main>
       <div class="button-cont">
         <div class="button-cnt">
-      <button>Host a Game</button>
+      <button class="host-game">Host a Game</button>
       <div class="code-shower">
-        Your Game Code is:1234
+        <!-- Your Game Code is:1234 -->
       </div>
       </div>
-      <input type="text" placeholder="Enter the Code to Join">
+      <input type="text" placeholder="Enter the Code to Join" class="join-game">
       </div>
       <div class="players-cont">
         <div>
@@ -61,29 +61,10 @@
         </div>
       </div>
     </main>
-    <!-- <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script> -->
-  <script src="./main.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+    <script src="./main.js" type="module"></script>
   </body>
 </html>
