@@ -9,6 +9,7 @@
   --darkBlue: #003459;
   --white: #ffffff;
   --light-blue: #007ea7;
+  --red:#eb8a8a;
 }
 header {
   background-color: var(--light-blue);
@@ -26,7 +27,6 @@ header {
   cursor: pointer;
 }
 .user-det-cont .user-img-cont {
-  background-color: var(--white);
   border-radius: 50%;
   width: 35px;
   height: 35px;
@@ -34,6 +34,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color:var(--white);
 }
 .user-img-cont img {
   width: 35px;
@@ -163,4 +164,7 @@ input::placeholder {
 }
 .none {
   display: none;
+}
+.players-cont .user-img-cont{
+  padding: 2rem;
 }

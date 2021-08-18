@@ -23,7 +23,9 @@ const user_cont = document.querySelector(".user-det-cont");
 const auth = firebase.auth();
 const textBox=document.querySelector('.join-game');
 const provider = new firebase.auth.GoogleAuthProvider();
+const playersCont=document.querySelector('.players-cont');
 const db=firebase.database();
+const extBtn=document.querySelector('.exit-btn');
 let opponent_player;
 let currentCoin;
 let playCheck=false;
@@ -37,6 +39,9 @@ host_btn.addEventListener("click",async ()=>{
   room_no=randomNoGen();
   await CheckRoom(userId);
   document.querySelector('.code-shower').textContent=`Your game code is ${room_no}`;
+  console.log("enteringlfdslkfja;jf");
+  console.log(extBtn);
+  extBtn.classList.remove('none');
   UpdateRoom(userId);
   db_insert(db,`connection/${room_no}`,{
     'status':"open",
@@ -66,9 +71,26 @@ textBox.addEventListener("keypress",async (e)=>{
   db_insert(db,`roomlink/${userId}`,{'rid':room_no});
   host_btn.style.display='none';
   currentCoin='O';
+  extBtn.classList.remove('none');
   dbtrigger();
 });
 
+extBtn.addEventListener("click",()=>{
+  db_del(db,`connection/${room_no}`);
+  db_del(db,`roomlink/${userId}`);
+  extBtn.classList.add('none');
+  textBox.style.display='flex';
+  textBox.value='';
+  host_btn.style.display='flex';
+  const cont=document.querySelectorAll('.players-cont .user-det-cont');
+  document.querySelector('.code-shower').innerHTML='';
+  playersCont.querySelectorAll('.user-img-cont')[0].style.background=`white`;
+  playersCont.querySelectorAll('.user-img-cont')[1].style.background=`white`;
+  cont[0].querySelector('.user-img-cont img').src=`./download.png`;
+  cont[0].querySelector('.user-name-cont').textContent=`User Name`;
+  cont[1].querySelector('.user-img-cont img').src=`./download.png`;
+  cont[1].querySelector('.user-name-cont').textContent=`User Name`;
+});
 
 async function signInUtil(auth, provider) {
   try{
@@ -92,6 +114,7 @@ async function UpdateRoom(userId){
 
 async function DelRoom(userId){
   if(!userHasRoom) return;
+  // db_del(db,`move/${userHasRoom.rid}`)
   db_del(db,`connection/${userHasRoom.rid}`);
   db_del(db,`roomlink/${userId}`);
 }
@@ -129,21 +152,26 @@ async function playerDetUpdate(){
   const cont=document.querySelectorAll('.players-cont .user-det-cont');
   let opponent_Data=await db_get(db, `connection/${room_no}`);
   opponent_Data=opponent_Data.val();
-    cont[1].innerHTML=`<div class="user-img-cont">
-    <img src=${opponent_Data.p2[2]} alt="">
-    </div>
-    <div class="user-name-cont">${opponent_Data.p2[1]}</div>`
-
-    cont[0].innerHTML=`<div class="user-img-cont">
-    <img src=${opponent_Data.p1[2]} alt="">
-    </div>
-    <div class="user-name-cont">${opponent_Data.p1[1]}</div>`
+  cont[0].querySelector('.user-img-cont img').src=`${opponent_Data.p1[2]}`;
+  cont[0].querySelector('.user-name-cont').textContent=`${opponent_Data.p1[1]}`;
+  cont[1].querySelector('.user-img-cont img').src=`${opponent_Data.p2[2]}`;
+  cont[1].querySelector('.user-name-cont').textContent=`${opponent_Data.p2[1]}`;
 }
 
+function bgUpdater(c1,c2){
+  console.log(c1,c2);
+  c1=(c1==='active')?'greenyellow':'#eb8a8a';
+  c2=(c2==='active')?'greenyellow':'#eb8a8a';
+  console.log(playersCont.querySelectorAll('.user-img-cont'));
+  playersCont.querySelectorAll('.user-img-cont')[0].style.background=c1;
+  playersCont.querySelectorAll('.user-img-cont')[1].style.background=c2;
+}
 
 function dbtrigger(){
   db.ref(`connection/${room_no}`).on("value",async ()=>{
     let data=await db_get(db,`connection/${room_no}`);
+    if(!data.val())return;
+    bgUpdater(data.val().p1[0],data.val().p2[0]);
     if(data.val().p2[0]==="active" && data.val().p1[0]==="active"){
       playCheck=true;
     }
@@ -152,6 +180,7 @@ function dbtrigger(){
     }
     if(data.val().p2[0]==='inactive')return;
     playerDetUpdate();
+    bgUpdater(data.val().p1[0],data.val().p2[0]);
     db_insert(db,`/move/${room_no}`,{"currMove":-1});
     db.ref(`/move/${room_no}`).on("value",db_player_move);
   });
