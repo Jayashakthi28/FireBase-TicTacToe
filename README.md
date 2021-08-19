@@ -7,5 +7,4 @@
 <br>
 <br>
 
-![Preview](https://user-images.githubusercontent.com/73294728/129995894-cad8db0f-769f-4d0a-ac69-50d295ee460e.png)
-
+![preview](https://user-images.githubusercontent.com/73294728/129997174-f21dc750-2ac1-4c91-ae24-18b8425509a4.jpg)
